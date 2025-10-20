@@ -1,0 +1,131 @@
+Endbenutzer-Lizenzvereinbarung (EULA) — Lizenzen pro Arbeitsplatz
+
+Produkt: CELM (die "Software")
+Lizenzgeber: BEP Venture UG, Chemnitzer Straße 69, Deutschland ("Lizenzgeber")
+Gültig ab: 20.10.2025
+
+Durch Herunterladen, Installation, Aktivierung oder Nutzung der Software stimmen Sie (der "Lizenznehmer") zu, an diese Endbenutzer-Lizenzvereinbarung (diese "Vereinbarung") gebunden zu sein. Wenn Sie diese Vereinbarung im Namen einer juristischen Person eingehen, bestätigen Sie, dass Sie befugt sind, diese juristische Person zu binden. Wenn Sie nicht zustimmen, installieren oder nutzen Sie die Software nicht.
+
+1. Definitionen
+1.1 "Software" bedeutet die ausführbare(n) Objektcode-Datei(en), Bibliotheken und zugehörigen Komponenten von CELM, einschließlich aller Updates, Upgrades, Fehlerbehebungen, Patches und Tools, die vom Lizenzgeber geliefert werden, jedoch ausschließlich Drittkomponenten.
+1.2 "Dokumentation" bedeutet Benutzerhandbücher, Anleitungen und Online-Hilfe, die vom Lizenzgeber bereitgestellt werden.
+1.3 "Autorisierter Benutzer" bedeutet eine natürliche Person (Mitarbeiter, Auftragnehmer oder Vertreter des Lizenznehmers), der ein Arbeitsplatz zugewiesen ist und die unter dieser Vereinbarung zur Nutzung der Software berechtigt ist.
+1.4 "Arbeitsplatz" bedeutet das Recht für einen autorisierten Benutzer, die Software zu nutzen, vorbehaltlich der Gerätebeschränkungen und Einschränkungen bei gleichzeitiger Nutzung in Abschnitt 2.3.
+1.5 "Update" bedeutet eine Version, die hauptsächlich Fehlerbehebungen oder kleinere Verbesserungen enthält; ein "Upgrade" bedeutet eine Version mit wesentlichen neuen Funktionen, Funktionalitäten oder Kompatibilitätsänderungen.
+1.6 "Bestellformular" bedeutet ein kommerzielles Bestelldokument (einschließlich Online-Checkout), das von den Parteien ausgeführt oder akzeptiert wird und Arbeitsplätze, Laufzeit, Gebühren und Support-Plan spezifiziert.
+1.7 "Drittkomponenten" bedeutet Open-Source- oder Drittsoftware, die in der Dokumentation oder einer Open-Source-Hinweisdatei identifiziert ist, die mit der Software gebündelt sein kann oder von ihr benötigt wird.
+1.8 "Evaluierungslizenz" bedeutet eine zeitlich begrenzte, nicht-produktive Lizenz ausschließlich für interne Tests und Evaluierung.
+
+2. Lizenzgewährung; Umfang pro Arbeitsplatz; Lieferung
+2.1 Gewährung. Vorbehaltlich der Zahlung von Gebühren und der kontinuierlichen Einhaltung dieser Vereinbarung und des Bestellformulars gewährt der Lizenzgeber dem Lizenznehmer eine beschränkte, nicht-exklusive, nicht-übertragbare (außer wie in Abschnitt 17.2), nicht-unterlizenzierbare Lizenz zur Installation und Nutzung der Software und Dokumentation ausschließlich für die internen Geschäftszwecke des Lizenznehmers innerhalb des (falls vorhanden) im Bestellformular angegebenen Gebiets.
+2.2 Metrik pro Arbeitsplatz. Die Nutzung wird ausschließlich pro Arbeitsplatz (namentlich benannter Benutzer) lizenziert. Jeder Arbeitsplatz muss genau einem autorisierten Benutzer (einem "benannten Benutzer") zugewiesen werden. Arbeitsplätze werden nicht gleichzeitig geteilt. Der Lizenznehmer darf einen Arbeitsplatz nicht öfter als einmal alle dreißig (30) Tage einem anderen benannten Benutzer neu zuweisen, und nur wenn der ursprüngliche Benutzer die Software nicht mehr nutzt.
+2.3 Gerätebeschränkung und Gleichzeitigkeit. Jeder benannte Benutzer darf die Software auf bis zu zwei (2) Geräten (z.B. Desktop und Laptop) zur ausschließlichen Nutzung dieses Benutzers installieren und aktivieren, vorausgesetzt, dass die Software nicht von mehr als einer Person gleichzeitig pro Arbeitsplatz genutzt wird. Virtuelle Maschinen und Remote-Desktop-Sitzungen zählen zur Gerätebeschränkung.
+2.4 Lieferung und Aktivierung. Die Lieferung erfolgt elektronisch. Die Software kann einen Lizenzschlüssel, eine lokale Lizenzdatei oder Online-Aktivierung erfordern und kann technische Schutzmaßnahmen (TPM) beinhalten. Der Lizenznehmer darf TPM nicht umgehen oder deaktivieren.
+2.5 Evaluierungslizenz. Falls bereitgestellt, gilt die Evaluierungslizenz für 14 Tage, ist nicht verlängerbar, sofern nicht schriftlich vereinbart, nicht-produktiv und "WIE BESEHEN". Nach Ablauf oder Kündigung muss der Lizenznehmer die Nutzung einstellen und die Software löschen.
+
+3. Einschränkungen
+3.1 Nur Objektcode; Keine Unterlizenzierung. Die Software wird nur im Objektcode lizenziert. Der Lizenznehmer darf die Software nicht vermieten, verleasen, verleihen, verkaufen, unterlizenzieren, zuweisen, verteilen oder für Dritte hosten, außer wie in dieser Vereinbarung ausdrücklich gestattet.
+3.2 Kein Reverse Engineering. Der Lizenznehmer darf die Software nicht zurückentwickeln, dekompilieren oder disassemblieren oder anderweitig versuchen, ihren Quellcode abzuleiten, außer im begrenzten Umfang, der durch zwingendes Recht gestattet ist (z.B. EU-Richtlinie 2009/24/EG). Vor Ausübung solcher Rechte muss der Lizenznehmer notwendige Interoperabilitätsinformationen vom Lizenzgeber anfordern.
+3.3 Keine konkurrierende Nutzung. Der Lizenznehmer darf die Software nicht verwenden, um ein direkt konkurrierendes Produkt oder eine Dienstleistung zu erstellen, zu trainieren oder zu validieren.
+3.4 Keine Umgehung; Keine Modifikationen. Der Lizenznehmer darf Lizenzkontrollen nicht entfernen oder umgehen, noch die Software modifizieren, übersetzen oder abgeleitete Werke davon erstellen.
+3.5 Hochrisiko-Nutzung. Die Software ist nicht für sicherheitskritische oder Hochrisiko-Umgebungen konzipiert (z.B. medizinische Lebenserhaltung, Nuklear, Luftfahrt oder kritische Infrastruktur). Eine solche Nutzung erfolgt auf alleiniges Risiko des Lizenznehmers.
+
+4. Eigentum
+Die Software und Dokumentation werden lizenziert, nicht verkauft. Der Lizenzgeber und seine Lizenzgeber behalten alle Rechte, Titel und Interessen, einschließlich aller geistigen Eigentumsrechte. Es werden keine Rechte stillschweigend gewährt.
+
+5. Drittkomponenten; Open-Source-Hinweise
+Die Software kann Drittkomponenten enthalten oder benötigen, die ihren eigenen Lizenzen unterliegen. Anwendbare Hinweise und Lizenzbedingungen werden in der Open-Source-Hinweisdatei bereitgestellt und durch Verweis einbezogen. Im Falle eines Konflikts mit diesen Drittbedingungen gelten diese Bedingungen ausschließlich für die relevante Komponente. Keine Drittlizenz gewährt Rechte an der Software selbst.
+
+6. Gebühren, Steuern und Zahlung
+6.1 Gebühren. Der Lizenznehmer zahlt die im Bestellformular für die Anzahl der Arbeitsplätze und die entsprechende Laufzeit angegebenen Gebühren. Gebühren sind nicht stornierbar und nicht erstattungsfähig, außer wie in dieser Vereinbarung ausdrücklich angegeben.
+6.2 Steuern. Gebühren verstehen sich ohne Steuern, Zölle und ähnliche Abgaben. Der Lizenznehmer ist für anfallende Umsatz-, Mehrwert-, Quellen- oder andere Steuern verantwortlich (ausgenommen Steuern auf das Nettoeinkommen des Lizenzgebers).
+6.3 Zahlungsverzug. Überfällige Beträge können Zinsen in Höhe von 1,5% pro Monat oder dem gesetzlich zulässigen Höchstsatz akkumulieren, je nachdem, welcher Wert niedriger ist. Der Lizenzgeber kann die Lizenz bei Nichtzahlung nach schriftlicher Benachrichtigung aussetzen.
+
+7. Support und Wartung
+7.1 Plan. Falls ein Support- und Wartungsplan erworben und im Bestellformular angegeben ist, stellt der Lizenzgeber Updates und angemessenen technischen Support während der Planlaufzeit gemäß der jeweils gültigen Support-Richtlinie des Lizenzgebers bereit.
+7.2 Upgrades. Große Upgrades können zusätzliche Gebühren erfordern, sofern nicht anders angegeben.
+7.3 Ausschlüsse. Support schließt Probleme aus, die durch nicht autorisierte Modifikationen, Drittsysteme oder Nutzung entgegen der Dokumentation verursacht werden.
+
+8. Vertraulichkeit
+8.1 Vertrauliche Informationen. Nicht-öffentliche Informationen, die von einer Partei der anderen offengelegt werden und als vertraulich gekennzeichnet sind oder vernünftigerweise als vertraulich verstanden werden ("vertrauliche Informationen"), dürfen nur zur Erfüllung dieser Vereinbarung verwendet und mit gebührender Sorgfalt geschützt werden.
+8.2 Ausnahmen. Vertrauliche Informationen umfassen keine Informationen, die öffentlich verfügbar sind, bereits ohne Verstoß bekannt waren, unabhängig entwickelt wurden oder rechtmäßig von einem Dritten ohne Einschränkung erhalten wurden.
+8.3 Erzwungene Offenlegung. Eine Partei darf vertrauliche Informationen offenlegen, wenn dies gesetzlich vorgeschrieben ist, mit unverzüglicher Benachrichtigung der anderen Partei (falls gesetzlich zulässig).
+
+9. Datenschutz; Telemetrie
+9.1 Personenbezogene Daten. Die Software verarbeitet Geschäftsdaten und erfordert keine personenbezogenen Daten über Lizenzierungs-/Aktivierungsmetadaten hinaus. Wenn der Lizenznehmer personenbezogene Daten bereitstellt, ist der Lizenznehmer der Verantwortliche und muss die rechtmäßige Erhebung und Verarbeitung sicherstellen.
+9.2 Telemetrie. Die Software kann begrenzte technische Telemetrie (z.B. Version, Aktivierungsstatus, Fehlerdiagnose) sammeln, um Stabilität zu verbessern und Lizenzkonformität zu überprüfen. Wo gesetzlich vorgeschrieben, stellt der Lizenzgeber Opt-out-Mechanismen bereit oder holt Zustimmung ein.
+
+10. Compliance; Export; Sanktionen
+Der Lizenznehmer hält alle anwendbaren Gesetze ein, einschließlich Exportkontrolle und Sanktionen (z.B. EU, USA). Der Lizenznehmer versichert, dass er keine verbotene Partei ist und die Software nicht in Embargo-Länder oder an beschränkte Endbenutzer exportiert oder re-exportiert.
+
+11. Eingeschränkte Garantie; Haftungsausschluss
+11.1 Eingeschränkte Garantie. Der Lizenzgeber garantiert, dass die unveränderte Software für dreißig (30) Tage ab Erstlieferung im Wesentlichen der Dokumentation entspricht, wenn sie wie empfohlen verwendet wird.
+11.2 Ausschließliches Rechtsmittel. Bei Verletzung der obigen Garantie wird der Lizenzgeber nach seiner Wahl und auf seine Kosten (a) die Software reparieren oder ersetzen; oder (b) vorausbezahlte, ungenutzte Lizenzgebühren für die betroffene Laufzeit erstatten, woraufhin die Lizenz für die nicht-konforme Software endet.
+11.3 Haftungsausschluss. AUSSER WIE IN ABSCHNITT 11.1 AUSDRÜCKLICH VORGESEHEN, WERDEN DIE SOFTWARE UND DOKUMENTATION "WIE BESEHEN" UND "WIE VERFÜGBAR" BEREITGESTELLT, OHNE GARANTIEN JEGLICHER ART, OB AUSDRÜCKLICH, STILLSCHWEIGEND, GESETZLICH ODER ANDERWEITIG, EINSCHLIESSLICH GARANTIEN DER MARKTGÄNGIGKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK ODER NICHTVERLETZUNG.
+
+12. Haftungsbeschränkung
+12.1 Mittelbare Schäden. IM MAXIMAL GESETZLICH ZULÄSSIGEN UMFANG HAFTET KEINE PARTEI FÜR MITTELBARE, ZUFÄLLIGE, BESONDERE, EXEMPLARISCHE ODER FOLGESCHÄDEN (EINSCHLIESSLICH GEWINNVERLUST, UMSATZVERLUST, GOODWILL-VERLUST ODER DATENVERLUST), SELBST WENN AUF DIE MÖGLICHKEIT HINGEWIESEN WURDE.
+12.2 Obergrenze. DIE GESAMTHAFTUNG DES LIZENZGEBERS AUS ODER IM ZUSAMMENHANG MIT DIESER VEREINBARUNG ÜBERSTEIGT NICHT DIE BETRÄGE, DIE DER LIZENZNEHMER TATSÄCHLICH AN DEN LIZENZGEBER FÜR ARBEITSPLÄTZE UNTER DIESER VEREINBARUNG WÄHREND DER ZWÖLF (12) MONATE VOR DEM EREIGNIS, DAS ZUR HAFTUNG FÜHRT, GEZAHLT HAT.
+12.3 Zwingendes Recht. Die Beschränkungen gelten nicht für Haftung, die nicht nach anwendbarem Recht ausgeschlossen oder beschränkt werden kann (z.B. vorsätzliches Fehlverhalten, Personenschäden durch Fahrlässigkeit).
+
+13. Freistellung durch Lizenznehmer
+Der Lizenznehmer verteidigt, stellt frei und hält den Lizenzgeber schadlos gegen Ansprüche aus (a) Verstoß des Lizenznehmers gegen diese Vereinbarung; (b) Kombination der Software mit nicht vom Lizenzgeber gelieferten Gegenständen, wenn der Anspruch nicht entstehen würde, wenn nicht für diese Kombination; oder (c) Daten des Lizenznehmers oder Nutzung unter Verstoß gegen Gesetze.
+
+14. Prüfung
+Nach mindestens zehn (10) Geschäftstagen vorheriger schriftlicher Benachrichtigung und nicht öfter als einmal pro zwölf (12) Monaten (außer bei begründetem Verdacht auf Verstoß) kann der Lizenzgeber die Nutzung der Software durch den Lizenznehmer während der normalen Geschäftszeiten und auf eine Weise prüfen, die Störungen minimiert. Wenn eine Prüfung Unterlizenzierung aufdeckt, wird der Lizenznehmer unverzüglich zusätzliche Arbeitsplätze erwerben und angemessene Prüfungskosten zahlen, wenn der Fehlbetrag fünf Prozent (5%) übersteigt.
+
+15. Laufzeit; Kündigung; Aussetzung
+15.1 Laufzeit. Die Lizenzlaufzeit (unbefristet oder Abonnement) ist im Bestellformular angegeben.
+15.2 Kündigung aus wichtigem Grund. Jede Partei kann diese Vereinbarung nach schriftlicher Benachrichtigung kündigen, wenn die andere Partei wesentlich verstößt und dies nicht innerhalb von dreißig (30) Tagen behebt (zehn (10) Tage bei Zahlungen).
+15.3 Wirkung der Kündigung. Bei Kündigung oder Ablauf muss der Lizenznehmer die Nutzung einstellen, die Software und vertrauliche Informationen deinstallieren und löschen und auf Anfrage die Löschung bestätigen. Abschnitte, die ihrer Natur nach überdauern sollten (einschließlich Abschnitte 3–5, 8–12, 14–19), überdauern.
+15.4 Aussetzung. Der Lizenzgeber kann die Lizenz bei wesentlichen Verstößen (z.B. Nichtzahlung, Anti-Umgehung) nach Benachrichtigung aussetzen.
+
+16. Behördliche Endbenutzer (falls zutreffend)
+Die Software ist "kommerzielle Computersoftware". Wenn sie von oder im Namen einer Behörde erworben wird, unterliegen Nutzung, Vervielfältigung oder Offenlegung dieser Vereinbarung.
+
+17. Abtretung; Kontrolländerung
+17.1 Keine Abtretung. Der Lizenznehmer darf diese Vereinbarung nicht abtreten, weder kraft Gesetzes noch anderweitig, ohne vorherige schriftliche Zustimmung des Lizenzgebers.
+17.2 Zulässige Übertragung. Ungeachtet Abschnitt 17.1 kann der Lizenznehmer diese Vereinbarung im Zusammenhang mit einer Fusion, Übernahme oder dem Verkauf wesentlicher Vermögenswerte abtreten, vorausgesetzt: (a) der Zessionar ist kein Wettbewerber des Lizenzgebers; (b) der Lizenznehmer gibt vorherige schriftliche Benachrichtigung; und (c) alle Gebühren sind vollständig bezahlt und Arbeitsplatzzahlen werden nicht überschritten.
+17.3 Bindende Wirkung. Jede zulässige Abtretung bindet Rechtsnachfolger.
+
+18. Benachrichtigungen
+Benachrichtigungen müssen schriftlich erfolgen und per anerkanntem Kurier oder E-Mail mit Bestätigung an die im Bestellformular angegebenen Kontakte (oder aktualisierte Adressen) zugestellt werden. Benachrichtigungen gelten als erhalten bei Zustellungsbestätigung (oder zwei Geschäftstage nach Versand per Kurier).
+
+19. Anwendbares Recht; Gerichtsstand; Sprache
+Diese Vereinbarung unterliegt den Gesetzen Deutschlands, ohne Berücksichtigung von Kollisionsnormen. Ausschließlicher Gerichtsstand ist Dresden, Deutschland, und die Parteien stimmen der persönlichen Gerichtsbarkeit dort zu. Die maßgebliche Sprache dieser Vereinbarung ist Englisch; Übersetzungen dienen nur der Bequemlichkeit.
+
+20. Allgemeines
+20.1 Gesamte Vereinbarung; Rangfolge. Diese Vereinbarung bildet zusammen mit dem Bestellformular und allen referenzierten Richtlinien (z.B. Support-Richtlinie, Open-Source-Hinweis) die gesamte Vereinbarung und ersetzt vorherige Vereinbarungen. Bei Konflikten hat das Bestellformular Vorrang, gefolgt von dieser Vereinbarung, dann referenzierten Richtlinien.
+20.2 Änderungen; Verzichte. Änderungen müssen schriftlich erfolgen und unterzeichnet werden (einschließlich E-Signatur). Die Nichtdurchsetzung einer Bestimmung stellt keinen Verzicht dar.
+20.3 Salvatorische Klausel. Wenn eine Bestimmung ungültig ist, bleibt der Rest wirksam; die Parteien ersetzen die ungültige Bestimmung durch eine gültige, die die ursprüngliche Absicht am besten widerspiegelt.
+20.4 Höhere Gewalt. Keine Partei haftet für Verzögerungen oder Ausfälle aufgrund von Ursachen außerhalb angemessener Kontrolle (z.B. Naturkatastrophen, Krieg, Arbeitsstreitigkeiten, Internet- oder Versorgungsausfälle).
+20.5 Publizität. Der Lizenzgeber darf den Namen und das Logo des Lizenznehmers als Kundenreferenz verwenden, sofern der Lizenznehmer nicht schriftlich widerspricht.
+20.6 Unabhängige Auftragnehmer. Die Parteien sind unabhängige Auftragnehmer; es entsteht keine Agentur, Partnerschaft oder Joint Venture.
+
+Anlage A — Support-Richtlinie (Zusammenfassung; falls erworben)
+• Abdeckung: Geschäftstage 09:00–17:00 (Europa/Dresden).
+• Kontakt: bep.venture.ug@gmail.com.
+• Reaktionsziele: P1 (kritisch): 1 Geschäftstag; P2: 2 Geschäftstage; P3: 5 Geschäftstage.
+• Enthalten: Installationsunterstützung, Nutzungshinweise, Fehlerbehebungen (Updates).
+• Ausgeschlossen: Individuelle Entwicklung, Dritt-Umgebungen, nicht unterstützte Plattformen. Professionelle Dienstleistungen verfügbar unter separatem Leistungsverzeichnis.
+
+Anlage B — Open-Source-Hinweis (Beispiel-Platzhalter)
+Die Software kann die folgenden Drittkomponenten unter ihren jeweiligen Lizenzen enthalten oder mit ihnen interagieren:
+
+• [z.B. GoogleTest — BSD‑3‑Clause]
+• [z.B. Weitere Bibliotheken nach Bedarf]
+
+Vollständige Lizenztexte sind in der Open-Source-Hinweisdatei enthalten. Keine Drittlizenz gewährt Rechte an der Software.
+
+Anlage C — Details zur Lizenz pro Arbeitsplatz (Illustrativ)
+• Benannte Benutzer-Arbeitsplätze: Eine natürliche Person pro Arbeitsplatz.
+• Gerätebeschränkung: Bis zu zwei (2) Geräte pro benanntem Benutzer; keine gleichzeitige Nutzung über die Anzahl der erworbenen Arbeitsplätze hinaus.
+• Neuzuweisung: Erlaubt nicht öfter als einmal alle dreißig (30) Tage und nur wenn der ursprüngliche Benutzer die Nutzung einstellt.
+• Nicht-produktive Nutzung: Separate nicht-produktive Arbeitsplätze können erforderlich sein, sofern nicht anders im Bestellformular angegeben.
+• Aktivierung: Lizenzschlüssel oder Online-Aktivierung erforderlich. Der Lizenznehmer hält Schlüssel vertraulich.
+
+AKZEPTIERT UND VEREINBART:
+Lizenzgeber: BEP Venture UG            Lizenznehmer: [Name der Entität]
+Name: Benjamin-Elias Probst            Name: __________________________
+Titel: CEO                             Titel: __________________________
+Datum: 20.10.2025                      Datum: __________________________

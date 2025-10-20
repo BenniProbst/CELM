@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Questions and Support
+    url: https://github.com/BEP-Venture/CELM/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 🔒 Security Vulnerability
+    url: https://github.com/BEP-Venture/CELM/security/advisories/new
+    about: Report a security vulnerability privately
+  - name: 📧 Email Support
+    url: mailto:bep.venture.ug@gmail.com
+    about: Contact us directly for licensing or commercial inquiries

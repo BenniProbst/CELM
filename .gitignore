@@ -1,0 +1,42 @@
+# CLion/CMake: all build directories like cmake-build-debug, -release, ...
+cmake-build*/
+
+# All files & folders starting with ".$" — in all subfolders
+.$*
+.idea*/
+
+# For initial development, do not upload example assets
+examples*/
+
+# Test fixtures: temp_write directory is for test output only (not versioniert)
+test_fixtures/temp_write/
+
+# Do not sync build outputs
+/build/
+/out/
+*.obj
+*.o
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.pdb
+*.exe
+
+# CMake/Vcpkg
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+.vscode/
+.idea/
+.vcpkg-root/
+installed/
+_ul
+
+# Third-party dependencies (except submodules)
+# Submodules are tracked separately via .gitmodules
+third_party/*
+!third_party/DependencyDeduplication.cmake
+!third_party/CMakeLists.txt
+!third_party/.gitkeep

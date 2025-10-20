@@ -1,0 +1,6 @@
+add_library(core_lib INTERFACE)
+
+target_include_directories(core_lib INTERFACE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${PROJECT_SOURCE_DIR}/include
+)
