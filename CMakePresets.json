@@ -1,0 +1,78 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "description": "Debug build with tests enabled",
+      "binaryDir": "${sourceDir}/cmake-build-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "BUILD_TESTS": "ON",
+        "CELM_ENABLE_TEST_INSTRUMENTATION": "ON"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "description": "Release build",
+      "binaryDir": "${sourceDir}/cmake-build-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "BUILD_TESTS": "OFF"
+      }
+    },
+    {
+      "name": "debug-with-asan",
+      "displayName": "Debug with AddressSanitizer",
+      "description": "Debug build with AddressSanitizer for memory debugging",
+      "binaryDir": "${sourceDir}/cmake-build-debug-asan",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "BUILD_TESTS": "ON",
+        "ENABLE_ASAN": "ON",
+        "CELM_ENABLE_TEST_INSTRUMENTATION": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "displayName": "Build Debug",
+      "description": "Build the debug configuration"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "displayName": "Build Release",
+      "description": "Build the release configuration"
+    },
+    {
+      "name": "debug-with-asan",
+      "configurePreset": "debug-with-asan",
+      "displayName": "Build Debug with ASAN",
+      "description": "Build the debug configuration with AddressSanitizer"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "displayName": "Test Debug",
+      "description": "Run tests in debug mode",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "debug-with-asan",
+      "configurePreset": "debug-with-asan",
+      "displayName": "Test Debug with ASAN",
+      "description": "Run tests with AddressSanitizer",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}
