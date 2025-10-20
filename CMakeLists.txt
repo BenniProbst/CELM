@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 4.0)
-project(ELM)
+project(CELM)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_executable(ELM main.cpp)
+add_executable(CELM main.cpp)
