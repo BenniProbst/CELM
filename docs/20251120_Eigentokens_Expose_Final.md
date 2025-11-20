@@ -20,28 +20,28 @@ Tel.: +49 162 327 8627
 
 - **ELM** – Eigentoken Language Model(er)
 - **CELM** – Component-based Eigentoken Language Model(er)
-- **Interpretation** – a parameterized program to give at least one output stream or result data from at least one input stream or input data.
-- **Knowledge** – Deeply analyzed information for correspondence across at least one object
-- **Data** – Plain mathematical information that needs to be interpreted to define a meaning
-- **Storage** – Any form of a local or distributed institution to store structured data objects/tokens
-- **B+-Tree** – Indices and Eigentoken B+-Tree similar to indices B+-Trees in MySQL, MariaDB, PostgreSQL
-- **B+-Forest** – Several topic- or version-oriented B+-Trees, most of the time in a database/storage context to only contain filtered content or Eigentokens that offer linkage to a set of well-defined topics
-- **Model-bucket** – As we gather data to learn knowledge by analysis, keeping data sorted and in order is key; for example, we sort frog pictures into one bucket and kangaroos into another, text in a third bucket. Those buckets may have full sorted subcategories, recursively becoming increasingly fine granular. B+-Trees keep major versions of the machine itself referring to changes in the interpretation program; model-buckets keep order and versioning on the data side
-- **Byte‑grammar** – A storage‑near grammar over byte sequences (not linguistic words), used to form productions (rules) for reuse and layout.
-- **Production (rule)** – A named expansion that reproduces a byte sequence or composition thereof; forms the building blocks of Eigentokens.
-- **Cross‑object grammar** – Grammar productions whose reuse spans multiple objects/files across the corpus.
-- **Token‑aligned block map** – A range map aligning HTTP range offsets to token (grammar) boundaries for seekability.
-- **Seekable compression** – Blocked/offset‑addressable compression (e.g., BGZF, zstd‑seekable) enabling random access within compressed data.
-- **CDC / FastCDC** – Content‑defined chunking with rolling hashes (e.g., Rabin, Gear); FastCDC is a modern variant optimizing throughput and ratio.
-- **SLP** – Straight‑Line Program; a compact grammar representation used by grammar compressors and self‑indexes.
-- **RLZ** – Relative Lempel‑Ziv; compression relative to a reference with fast random access. [37, 38]
-- **Tail latency** – High‑percentile response latency (P95/P99), critical for storage read performance.
-- **Write amplification** – Extra I/O writes beyond logical data due to layout, compaction, or metadata updates.
-- **Fingerprint** – Content‑derived identifier (e.g., hash) to address objects or chunks for deduplication.
-- **S3/KV facade** – An object/key‑value API surface compatible with S3 semantics.
-- **Asynchronous inline pipeline** – Ingest writes stable references first, deferring grammar/consolidation to background tasks.
-- **HTTP Range semantics (RFC 9110)** – The current reference for partial content requests across HTTP versions; obsoletes RFC 7233.
-- **zstd‑seekable** – A zstd framing/pointer approach allowing random access; practice via skippable frames/seek tables.
+- **Interpretation** – A parameterized program to process input streams or data and produce output streams or results
+- **Knowledge** – Systematically analyzed information establishing correspondence patterns across multiple objects
+- **Data** – Raw mathematical information requiring interpretation to establish semantic meaning
+- **Storage** – Any local or distributed system for structured data object and token persistence
+- **B+-Tree** – Index structure for Eigentokens similar to B+-tree indices in MySQL, MariaDB, PostgreSQL
+- **B+-Forest** – Collection of topic- or version-oriented B+-trees containing filtered Eigentokens linked to well-defined semantic categories
+- **Model-bucket** – Hierarchical categorization system for data organization (e.g., separating image types, text, code) with recursive subcategories achieving fine-grained classification. B+-trees maintain interpretation program versions; model-buckets maintain data-side versioning
+- **Byte-grammar** – Storage-level grammar operating on byte sequences (not linguistic tokens) forming productions for reuse and layout optimization
+- **Production (rule)** – Named grammatical expansion reproducing byte sequences or compositions; fundamental building blocks of Eigentokens
+- **Cross-object grammar** – Grammar productions whose reuse spans multiple objects/files across the storage corpus
+- **Token-aligned block map** – Mapping structure aligning HTTP range offsets to grammatical token boundaries for efficient seekability
+- **Seekable compression** – Block-addressable compression formats (e.g., BGZF, zstd-seekable) enabling random access within compressed data
+- **CDC / FastCDC** – Content-defined chunking using rolling hashes (e.g., Rabin, Gear); FastCDC optimizes for throughput and ratio
+- **SLP** – Straight-Line Program; compact grammar representation used by grammar compressors and self-indexes
+- **RLZ** – Relative Lempel-Ziv; compression relative to reference enabling fast random access [37, 38]
+- **Tail latency** – High-percentile response latency (P95/P99), critical for storage read performance
+- **Write amplification** – Excess I/O writes beyond logical data due to layout, compaction, or metadata updates
+- **Fingerprint** – Content-derived identifier (e.g., hash) addressing objects or chunks for deduplication
+- **S3/KV facade** – Object/key-value API surface maintaining S3 semantic compatibility
+- **Asynchronous inline pipeline** – Ingestion architecture writing stable references immediately while deferring grammar consolidation to background tasks
+- **HTTP Range semantics (RFC 9110)** – Current standard for partial content requests across HTTP versions; supersedes RFC 7233
+- **zstd-seekable** – Zstandard compression variant with frame pointers enabling random access via skippable frames and seek tables
 
 ---
 
@@ -59,7 +59,7 @@ This work bridges the gap between symbolic and sub-symbolic AI approaches, offer
 
 ---
 
-## Introduction and Motivation
+## 1. Introduction and Motivation
 
 ### 1.1 The Monolithic LLM Problem
 
@@ -82,9 +82,17 @@ The key insight is that effective deduplication requires understanding data stru
 
 This work envisions a future where language models are engineered rather than trained—where model behavior is predictable, debuggable, and formally verifiable. The Eigentokens architecture represents the foundational infrastructure for this vision, providing both the storage substrate and compilation machinery for deterministic AI systems.
 
+### 1.5 Motivation for Grammar-Based Storage
+
+Modern AI/analytics pipelines exhibit significant redundancy: similar code snapshots, evolving logs, columnar blobs, and incremental deltas proliferate throughout storage systems. Small range reads dominate access patterns, yet existing storage architectures impose fundamental trade-offs: coarse-grained deduplication compromises locality, while monolithic compression eliminates seekability. These limitations result in both economic inefficiency and opacity for deterministic build processes.
+
+The Eigentokens architecture addresses these limitations by implementing storage that operates as a compiler. The system treats recurring byte-patterns as reusable productions that remain seekable on disk, enabling deterministic artifact composition without floating-point nondeterminism. Deduplication and compression emerge as natural consequences of grammatical analysis. Range access remains first-class through HTTP Range and S3/KV interfaces. [20]
+
+Current state-of-the-art solutions provide strong foundations: CDC/FastCDC achieve edit-stable boundaries, while BGZF/zstd-seekable enable random access. However, none transform storage into a build graph with cross-object grammar as the primary organizational principle. This research addresses this fundamental gap. [1, 3, 4, 21, 22]
+
 ---
 
-## Formal Foundations
+## 2. Formal Foundations
 
 ### 2.1 Eigentoken Definition
 
@@ -136,11 +144,13 @@ Forest F = {T₁, T₂, ..., Tₘ} where each Tᵢ represents a topic-specific i
 ```
 
 Each tree T follows standard B+-tree invariants with relaxed strictness for recursive references:
-- Internal nodes: store production rules and navigation pointers
+- Internal nodes: store production rules and frequency metadata
 - Leaf nodes: contain Eigentoken data or compressed payloads
 - Cross-tree edges: enable shared productions across topics
 
-## Scope and Limitations
+---
+
+## 3. Scope and Limitations
 
 This work focuses on storage-level grammar induction and deterministic model compilation, explicitly excluding:
 - **NLP tokenization**: No linguistic parsing or word-level segmentation
@@ -151,13 +161,13 @@ The system operates at the byte level, treating all data—text, images, structu
 
 ---
 
-## Problem Statement and Research Questions
+## 4. Problem Statement and Research Questions
 
-### 3.1 Core Research Problem
+### 4.1 Core Research Problem
 
 Can a unified grammar-based storage architecture simultaneously achieve superior deduplication/compression ratios while enabling deterministic compilation of language models, thereby bridging the gap between symbolic and sub-symbolic AI approaches?
 
-### 3.2 Research Questions
+### 4.2 Research Questions
 
 **RQ1 - Grammar-Based Deduplication Performance**  
 Does grammar-aware dynamic chunking with hierarchical pattern learning achieve better deduplication ratios (target: 25-40% improvement) and edit stability compared to state-of-the-art Content-Defined Chunking (FastCDC) under realistic workloads including insertions, deletions, and block shifts?
@@ -176,9 +186,9 @@ How does grammar induction performance vary across different data types (text, c
 
 ---
 
-## Machine Learning Clarification
+## 5. Machine Learning Clarification
 
-### 4.1 Inverse Learning Strategy
+### 5.1 Inverse Learning Strategy
 
 Unlike traditional LLMs that learn to predict tokens from text, Eigentokens employ an **inverse learning strategy**: the system learns how to learn grammars. This meta-learning approach operates through two metamodel levels:
 
@@ -194,7 +204,7 @@ The second-level metamodel determines how learned grammars map to neural archite
 M2: Grammar × Topic → NeuralWeights
 ```
 
-### 4.2 Deterministic Weight Assignment
+### 5.2 Deterministic Weight Assignment
 
 Once grammatical structure is extracted, neural network weights are **calculated, not trained**:
 
@@ -204,7 +214,7 @@ Once grammatical structure is extracted, neural network weights are **calculated
 
 This eliminates floating-point nondeterminism inherent in gradient-based training, ensuring reproducible model behavior.
 
-### 4.3 Topic-Filtered Compilation
+### 5.3 Topic-Filtered Compilation
 
 The compilation process filters the grammar database by semantic topics:
 
@@ -218,9 +228,11 @@ def compile_model(topic: str, grammar_db: B+Forest) -> ELM:
 
 For example, compiling a "cats" model extracts only Eigentokens containing feline-related patterns, creating a specialized model without irrelevant knowledge.
 
-## Practical Example
+---
 
-### 5.1 Concrete Eigentoken Processing
+## 6. Practical Example
+
+### 6.1 Concrete Eigentoken Processing
 
 Consider processing the German compound word "Apfelbaum" (apple tree) across multiple documents:
 
@@ -245,8 +257,8 @@ Composite rule: τ₃ → τ₁ + τ₂
 Eigentoken τ₃ = {
     id: 0x3A7F,
     P: [CONCAT(τ₁, τ₂)],  // Interpretation program
-    D: null,                    // No raw data, uses references
-    R: {0x1A2B, 0x2C3D}        // References to τ₁, τ₂
+    D: null,               // No raw data, uses references
+    R: {0x1A2B, 0x2C3D}   // References to τ₁, τ₂
 }
 ```
 
@@ -255,7 +267,7 @@ Eigentoken τ₃ = {
 - Eigentokens: Store "Apfel" once + "baum" once + 3 references = 11 bytes + metadata
 - Deduplication ratio: 59% reduction
 
-### 5.2 Cross-Object Grammar Benefits
+### 6.2 Cross-Object Grammar Benefits
 
 When new documents arrive containing "Apfelsaft" (apple juice) or "Baumhaus" (treehouse), the system reuses existing tokens:
 - "Apfelsaft" = τ₁ + new token "saft"
@@ -265,21 +277,31 @@ This demonstrates how grammar-aware chunking preserves semantic boundaries while
 
 ---
 
-## Related Work
+## 7. Related Work
 
-### 6.1 Content-Defined Chunking
+### 7.1 Content-Defined Chunking
 
 Content-Defined Chunking (CDC) techniques, pioneered by LBFS [1] and refined in FastCDC [3], provide edit-stable boundaries through rolling hash functions. While these approaches achieve deduplication ratios of 20-30% on typical workloads, they lack semantic awareness and cannot exploit grammatical patterns across objects. FastCDC optimizes throughput to 1-2 GB/s but treats all byte sequences uniformly, missing opportunities for pattern-based optimization.
 
-### 6.2 Grammar-Based Compression
+### 7.2 Grammar-Based Compression
 
 Grammar compression algorithms like Sequitur [7] and Re-Pair [9] discover hierarchical structure in sequences, achieving compression ratios superior to LZ77-based methods. However, these systems operate on single files rather than cross-object corpora and lack integration with storage systems. Recent work on Straight-Line Programs (SLPs) [10] enables substring queries on compressed text but does not address the challenges of distributed storage or concurrent access.
 
-### 6.3 Neural-Symbolic Integration
+### 7.3 Neural-Symbolic Integration and Compositional Learning
 
-Compositional learning approaches [40-42] demonstrate that explicit structural representations improve model interpretability and generalization. Neural module networks [43] show promise for assembling complex behaviors from simpler components. However, no existing work applies these principles to storage-level model compilation or provides deterministic guarantees.
+Recent advances in compositional learning demonstrate the power of explicit structural representations for model interpretability and generalization:
 
-### 6.4 Distinguishing from UltiHash
+- **Compositional Generalization** [40]: Lake and Baroni (2018) show that systematic compositionality—the algebraic ability to understand novel combinations from known components—remains a challenge for neural networks, motivating architectures with explicit compositional structure.
+
+- **Neural Module Networks** [41]: Andreas et al. (2016) demonstrate modular neural architectures where complex behaviors emerge from assembling simpler, reusable neural modules—a principle directly applicable to Eigentokens' grammatical compilation.
+
+- **Discrete Symbolic Representations** [42]: Santoro et al. (2021) explore hybrid neuro-symbolic approaches that maintain discrete symbolic representations alongside continuous neural computations, improving both interpretability and systematic generalization.
+
+- **Program Synthesis and Induction** [43]: Ellis et al. (2021) present DreamCoder, which learns to solve problems by inducing symbolic programs, demonstrating that explicit program representations enable better generalization than pure neural approaches.
+
+These compositional approaches validate the theoretical foundation of Eigentokens: explicit grammatical structures enable more interpretable, generalizable, and debuggable AI systems than monolithic neural architectures.
+
+### 7.4 Distinguishing from UltiHash
 
 UltiHash represents an earlier attempt at grammar-aware deduplication but lacks the compilation capabilities central to Eigentokens:
 
@@ -290,26 +312,26 @@ UltiHash represents an earlier attempt at grammar-aware deduplication but lacks 
 | Model Generation | Not supported | Deterministic compilation from grammar |
 | Cross-Object Patterns | Limited | Full cross-corpus grammar induction |
 | Neural Integration | None | Direct weight calculation from productions |
+| Compositionality | Not addressed | Explicit compositional structure |
 
-### 6.5 Research Gap
+### 7.5 Research Gap
 
 No existing system combines:
 1. **Cross-object grammar induction** with O(n³) learning complexity
 2. **B+-forest storage architecture** optimized for grammatical access patterns  
 3. **Deterministic model compilation** from storage-level patterns
 4. **Unified deduplication and AI infrastructure** in a single system
+5. **Compositional learning principles** applied to storage and compilation
 
 This work fills this gap by treating storage and AI model construction as two facets of the same grammatical analysis problem.
 
 ---
 
-## Contemporary LLM Architectures: A Comparative Analysis
+## 8. Contemporary LLM Architectures: A Comparative Analysis
 
 To contextualize the paradigm shift proposed by Eigentokens, this section examines the architectural principles underlying current state-of-the-art language models. These systems exemplify the limitations of probabilistic approaches that Eigentokens address through deterministic compilation.
 
----
-
-### 7.1 Probabilistic Language Model Architectures
+### 8.1 Probabilistic Language Model Architectures
 
 **GPT-5 (OpenAI, 2025)** [35]: Employs a dual-model architecture with router-based dispatch between efficiency-optimized and reasoning-optimized transformer variants. Despite architectural innovations, the system remains fundamentally probabilistic, encoding knowledge implicitly in ~10¹² parameters trained via next-token prediction. Critical limitations include: (a) inability to trace outputs to source knowledge, (b) hallucination under distribution shift, and (c) retraining requirements for knowledge updates.
 
@@ -317,7 +339,7 @@ To contextualize the paradigm shift proposed by Eigentokens, this section examin
 
 **Claude 3.5 Sonnet (Anthropic, 2024)** [31]: Introduces Constitutional AI for alignment but maintains probabilistic generation through transformer architectures. The 200,000-token context window partially mitigates memory limitations but does not address fundamental issues of opacity and non-determinism inherent in gradient-trained systems.
 
-### 7.2 Fundamental Limitations of Probabilistic Approaches
+### 8.2 Fundamental Limitations of Probabilistic Approaches
 
 All contemporary LLMs share critical architectural constraints:
 
@@ -329,9 +351,9 @@ All contemporary LLMs share critical architectural constraints:
 
 ---
 
-## The Eigentokens Paradigm: Deterministic Grammar-Based Architecture
+## 9. The Eigentokens Paradigm: Deterministic Grammar-Based Architecture
 
-### 8.1 Fundamental Architectural Shift
+### 9.1 Fundamental Architectural Shift
 
 Eigentokens represent a paradigm shift from probabilistic to deterministic language model construction. While contemporary LLMs encode knowledge implicitly in neural weights through gradient descent, Eigentokens extract explicit grammatical rules that directly determine model architecture and behavior.
 
@@ -340,7 +362,7 @@ The system employs a meta-learning hierarchy:
 - **M2 Metamodel**: Maps grammatical structures to neural architectures
 - **M3 Adaptation**: Enables runtime grammar extension without retraining
 
-### 8.2 Grammar as First-Class Storage Primitive
+### 9.2 Grammar as First-Class Storage Primitive
 
 Each Eigentoken encapsulates both data and computation through its interpretation program P, following Harvard architecture principles. This dual nature transforms storage from passive data repository to active compilation infrastructure. Grammar productions discovered through pattern analysis become:
 
@@ -348,7 +370,7 @@ Each Eigentoken encapsulates both data and computation through its interpretatio
 2. **Compilation Modules**: Building blocks for deterministic model assembly
 3. **Knowledge Representations**: Explicit, traceable, debuggable semantic units
 
-### 8.3 Compositional Model Construction
+### 9.3 Compositional Model Construction
 
 The compilation process parallels software engineering principles established by compositional frameworks [39]. Models are assembled through:
 
@@ -364,7 +386,7 @@ This approach enables:
 - **Incremental Updates**: New rules integrate without full recompilation
 - **Semantic Debugging**: Errors traceable to specific grammatical productions
 
-### 8.4 Storage-Compilation Unification
+### 9.4 Storage-Compilation Unification
 
 The innovation lies not in grammar compression or neural architecture alone, but in their unification. The same B+-forest that optimizes storage access patterns also maintains the dependency graph for model compilation. This unified architecture achieves:
 
@@ -374,9 +396,9 @@ The innovation lies not in grammar compression or neural architecture alone, but
 
 ---
 
-## System Architecture and Implementation
+## 10. System Architecture and Implementation
 
-### 9.1 Core Components
+### 10.1 Core Components
 
 **Grammar Induction Engine**: Implements three-phase pattern discovery with O(n³) complexity bounded by acceleration heuristics. Initial chunking uses CDC with gear hash (window sizes 4-1024 bytes) followed by grammatical refinement based on cross-object pattern frequency.
 
@@ -389,7 +411,7 @@ The innovation lies not in grammar compression or neural architecture alone, but
 
 **Storage Interface Layer**: Provides S3-compatible REST API with extensions for grammatical queries. Implements HTTP Range requests (RFC 9110) through token-aligned block maps, maintaining seekability on compressed data.
 
-### 9.2 Implementation Details
+### 10.2 Implementation Details
 
 **Language and Framework**: C++20 with lock-free data structures for concurrent access. Memory-mapped B+-trees for persistence with write-ahead logging for crash recovery.
 
@@ -399,9 +421,9 @@ The innovation lies not in grammar compression or neural architecture alone, but
 
 ---
 
-## Novel Contributions
+## 11. Novel Contributions
 
-### 10.1 Theoretical Contributions
+### 11.1 Theoretical Contributions
 
 **C1 - Unified Grammar-Storage-Compilation Framework**: First system to unify storage deduplication, grammar induction, and deterministic model compilation in a single architecture. Establishes theoretical foundations for treating data storage and AI model construction as dual aspects of grammatical analysis.
 
@@ -409,7 +431,7 @@ The innovation lies not in grammar compression or neural architecture alone, but
 
 **C3 - Deterministic Weight Calculation**: Formal method for calculating neural network weights directly from grammatical production frequencies and dependencies, eliminating floating-point nondeterminism inherent in gradient descent.
 
-### 10.2 Systems Contributions
+### 11.2 Systems Contributions
 
 **C4 - Grammar-Aware B+-Forest Architecture**: Novel non-strict B+-forest maintaining topic-filtered grammatical views with O(log n) access complexity while supporting recursive references and cross-tree dependencies.
 
@@ -417,7 +439,7 @@ The innovation lies not in grammar compression or neural architecture alone, but
 
 **C6 - Asynchronous Grammar Pipeline**: Three-stage processing architecture decoupling ingestion from grammar learning, achieving < 10ms write latencies while performing O(n³) pattern analysis in background.
 
-### 10.3 Empirical Contributions
+### 11.3 Empirical Contributions
 
 **C7 - Comparative Evaluation Framework**: Comprehensive benchmarking suite comparing grammar-based approach against CDC, BGZF, and LSM baselines across deduplication ratio, compression efficiency, write amplification, and range-read latency metrics.
 
@@ -425,22 +447,22 @@ The innovation lies not in grammar compression or neural architecture alone, but
 
 ---
 
-## Comparative Landscape (including UltiHash)
+## 12. Comparative Landscape
 
-| Approach                                    | Cross‑Object Dedup  | Edit Stability | Range Reads              | Write Ampl. | Ingest           | Metadata   | Layout                           |
-|:--------------------------------------------|:--------------------|:---------------|:-------------------------|:------------|:-----------------|:-----------|:---------------------------------|
-| Fixed‑Size + zstd                           | Medium              | Low            | Medium (block map)       | Low         | High             | Low        | Flat                             |
-| CDC / FastCDC                               | High                | High           | Medium (block map)       | Medium      | High             | Low–Medium | Flat/LSM                         |
-| Grammar + Self‑Index (SLP/Sequitur/Re‑Pair) | High (intra‑object) | Medium         | High (substring)         | High        | Low–Medium       | High       | Index‑centric                    |
-| Seekable Block (BGZF etc.)                  | n/a                 | n/a            | High                     | Low         | High             | Low        | Block‑map                        |
-| UltiHash (earlier)                          | Medium (indirect)   | Low–Medium     | Medium                   | Medium      | Medium           | Low        | 2‑level, static                  |
-| **Eigentokens (this work)**                 | **High**            | **High**       | **High (token‑aligned)** | **Lower**   | **High (async)** | **Medium** | **B+‑forest, LLM meta compiler** |
+| Approach | Cross‑Object Dedup | Edit Stability | Range Reads | Write Ampl. | Ingest | Metadata | Layout |
+|:---------|:-------------------|:---------------|:------------|:------------|:-------|:---------|:-------|
+| Fixed‑Size + zstd | Medium | Low | Medium (block map) | Low | High | Low | Flat |
+| CDC / FastCDC | High | High | Medium (block map) | Medium | High | Low–Medium | Flat/LSM |
+| Grammar + Self‑Index | High (intra‑object) | Medium | High (substring) | High | Low–Medium | High | Index‑centric |
+| Seekable Block (BGZF) | n/a | n/a | High | Low | High | Low | Block‑map |
+| UltiHash | Medium (indirect) | Low–Medium | Medium | Medium | Medium | Low | 2‑level, static |
+| **Eigentokens** | **High** | **High** | **High (token‑aligned)** | **Lower** | **High (async)** | **Medium** | **B+‑forest, LLM compiler** |
 
 ---
 
-## Evaluation Methodology
+## 13. Evaluation Methodology
 
-### 11.1 Experimental Setup
+### 13.1 Experimental Setup
 
 **Hardware Configuration**:
 - Server: 2x Intel Xeon Gold 6248R (48 cores), 256GB RAM
@@ -452,7 +474,7 @@ The innovation lies not in grammar compression or neural architecture alone, but
 - Compiler: GCC 12.2 with -O3 optimization
 - Baseline implementations: FastCDC 2.0, zstd 1.5.5, RocksDB 8.0
 
-### 11.2 Datasets and Workloads
+### 13.2 Datasets and Workloads
 
 **Dataset Categories**:
 
@@ -475,7 +497,7 @@ The innovation lies not in grammar compression or neural architecture alone, but
    - 150GB Docker layers with shared dependencies
    - Deduplication across layers: 40-50%
 
-### 11.3 Evaluation Metrics
+### 13.3 Evaluation Metrics
 
 **Storage Efficiency**:
 - Deduplication ratio: (1 - stored_size/logical_size) × 100%
@@ -494,7 +516,7 @@ The innovation lies not in grammar compression or neural architecture alone, but
 - Model size reduction: compiled_size/traditional_model_size
 - Inference latency: ms per token generation
 
-### 11.4 Baseline Comparisons
+### 13.4 Baseline Comparisons
 
 | System | Configuration | Optimization Focus |
 |--------|--------------|-------------------|
@@ -506,9 +528,9 @@ The innovation lies not in grammar compression or neural architecture alone, but
 
 ---
 
-## Expected Results
+## 14. Expected Results
 
-### 12.1 Hypothesized Outcomes
+### 14.1 Hypothesized Outcomes
 
 Based on theoretical analysis and preliminary experiments, the following results are anticipated:
 
@@ -524,7 +546,7 @@ Based on theoretical analysis and preliminary experiments, the following results
 - Determinism: 100% bit-identical across compilation runs
 - Traceability: Complete path from output to source Eigentokens
 
-### 12.2 Validation Criteria
+### 14.2 Validation Criteria
 
 Success criteria for the research:
 1. Statistically significant improvement in deduplication ratio (p < 0.01)
@@ -532,9 +554,11 @@ Success criteria for the research:
 3. Successful compilation of functional language models
 4. Reproducible results across different datasets
 
-## Timeline and Project Management
+---
 
-### 13.1 Development Schedule (20 weeks)
+## 15. Timeline and Project Management
+
+### 15.1 Development Schedule (20 weeks)
 
 | Phase | Duration | Deliverables |
 |-------|----------|-------------|
@@ -545,7 +569,7 @@ Success criteria for the research:
 | **Documentation** | Weeks 17-19 | Technical report, API documentation, reproducibility package |
 | **Buffer** | Week 20 | Contingency for delays, additional experiments |
 
-### 13.2 Risk Mitigation
+### 15.2 Risk Mitigation
 
 | Risk | Impact | Mitigation Strategy |
 |------|--------|--------------------|
@@ -556,117 +580,128 @@ Success criteria for the research:
 
 ---
 
-## Risks & Mitigations
+## 16. Assessment and Deliverables
 
-- **Grammar induction overheads may impact ingest throughput** — Mitigation: use an asynchronous pipeline and enforce a bounded tokenization depth to cap processing cost.
-- **Range‑friendly mapping could increase metadata size** — Mitigation: employ token-aligned block maps and compact leaf storage policies to limit metadata bloat.
-- **Implementation scope vs. semester time (risk of attempting too much in one term)** — Mitigation: prioritize core components A1 – A3; implement A4 as a minimal S3 subset (rather than full API) if needed; defer replication/EC (A7) to future work as planned.
+**Academic Assessment**:
+- **Colloquium (60 min)**: Technical presentation, live demonstration, and defense covering design decisions, evaluation results, and broader implications
+- **Technical Report**: 20-page workshop-style paper following ACM/IEEE format
+- **Slide Deck**: Comprehensive presentation materials (PDF)
 
----
+**Software Deliverables**:
+- **C++ Prototype**: Core implementation with command-line interface
+- **Evaluation Harness**: Reproducible benchmarking scripts and datasets
+- **API Documentation**: Complete interface specification and usage examples
+- **Open-Source Package**: GitHub repository with build instructions and test suite
 
-## Assessment Alignment & Deliverables
-
-- **Colloquium (60 min):** presentation, demo, and Q&A on design, evaluation, and implications.
-- **Deliverables:** C++ prototype + CLI, reproducible benchmark scripts, datasets/pointers, report (PDF), slide deck (PDF), and a ~20‑page workshop‑style draft.
-- **Open benchmarking harness:** ablations tied to research questions; transparent profiling and tail‑latency reporting.
-- **We evaluate deduplication efficiency, ingest throughput, write amplification, and HTTP Range latencies (P50/P95/P99) versus Content‑Defined Chunking (CDC) family baselines and flat/Log‑Structured Merge (LSM) layouts.**
+**Evaluation Focus**:
+The assessment evaluates deduplication efficiency, ingestion throughput, write amplification, and HTTP Range latencies (P50/P95/P99) versus Content-Defined Chunking (CDC) family baselines and flat/Log-Structured Merge (LSM) layouts, alongside deterministic model compilation capabilities.
 
 ---
 
 ## Bibliography
 
-### Content‑Defined Chunking (CDC) & Deduplication
+### Content-Defined Chunking (CDC) & Deduplication
 
-[1] A. Muthitacharoen, B. Chen, and D. Mazières, "A Low-Bandwidth Network File System (LBFS)," SOSP 2001. — Foundational use of content-defined chunking (CDC) for detecting similarity across file versions; establishes the CDC rationale used by many dedup systems. [PDF](https://pdos.csail.mit.edu/papers/lbfs%3Asosp01/lbfs.pdf)
+[1] A. Muthitacharoen, B. Chen, and D. Mazières, "A Low-Bandwidth Network File System (LBFS)," *SOSP 2001*. Foundational use of content-defined chunking for detecting similarity across file versions. [PDF](https://pdos.csail.mit.edu/papers/lbfs%3Asosp01/lbfs.pdf)
 
-[2] S. Quinlan and S. Dorward, "Venti: A New Approach to Archival Storage," FAST 2002. — Classic content-addressable, write-once archival store; motivates fingerprint-addressed blocks and global dedup indices. [USENIX](https://www.usenix.org/conference/fast-02/venti-new-approach-archival-data-storage)
+[2] S. Quinlan and S. Dorward, "Venti: A New Approach to Archival Storage," *FAST 2002*. Classic content-addressable, write-once archival store. [USENIX](https://www.usenix.org/conference/fast-02/venti-new-approach-archival-data-storage)
 
-[3] W. Xia et al., "FastCDC: A Fast and Efficient Content‑Defined Chunking Approach for Data Deduplication," USENIX ATC 2016. — state-of-the-art CDC variant (Gear hashing) balancing throughput and dedup ratio; baseline for modern CDC throughput/ratio tradeoffs. [PDF](https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf)
+[3] W. Xia et al., "FastCDC: A Fast and Efficient Content-Defined Chunking Approach for Data Deduplication," *USENIX ATC 2016*. State-of-the-art CDC variant balancing throughput and dedup ratio. [PDF](https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf)
 
-[4] Y. Hu et al., "The Design of Fast Content‑Defined Chunking for Data Deduplication," IEEE TPDS, 2020. — Journal extension analyzing FastCDC design decisions; useful for parameterization and performance modeling. [PDF](https://ranger.uta.edu/~jiang/publication/Journals/2020/2020-IEEE-TPDS(Wen%20Xia).pdf)
+[4] Y. Hu et al., "The Design of Fast Content-Defined Chunking for Data Deduplication," *IEEE TPDS*, 2020. Journal extension analyzing FastCDC design decisions. [PDF](https://ranger.uta.edu/~jiang/publication/Journals/2020/2020-IEEE-TPDS(Wen%20Xia).pdf)
 
-[5] M. Gregoriadis et al., "A Thorough Investigation of Content‑Defined Chunking," arXiv, 2024. — Recent comparative analysis of CDC families; helpful as a survey for algorithm choices and distributions. [arXiv](https://arxiv.org/pdf/2409.06066)
+[5] M. Gregoriadis et al., "A Thorough Investigation of Content-Defined Chunking," *arXiv*, 2024. Recent comparative analysis of CDC families. [arXiv](https://arxiv.org/pdf/2409.06066)
 
-[6] M. O. Rabin, "Fingerprinting by Random Polynomials," 1981 (Tech. Report). — Origin of polynomial rolling fingerprints used in CDC and similarity detection. [PDF](https://www.xmailserver.org/rabin.pdf)
+[6] M. O. Rabin, "Fingerprinting by Random Polynomials," 1981. Origin of polynomial rolling fingerprints used in CDC. [PDF](https://www.xmailserver.org/rabin.pdf)
 
 ### Grammar-Based Compression & Operating on Compressed Data
 
-[7] C. G. Neville-Manning and I. H. Witten, "Identifying Hierarchical Structure in Sequences: A Linear-Time Algorithm (SEQUITUR)," DCC 1997. — Introduces grammar-based compression via online rule induction; conceptual basis for grammar tokens. [arXiv](https://arxiv.org/abs/cs/9709102)
+[7] C. G. Neville-Manning and I. H. Witten, "Identifying Hierarchical Structure in Sequences: A Linear-Time Algorithm (SEQUITUR)," *DCC 1997*. Introduces grammar-based compression via online rule induction. [arXiv](https://arxiv.org/abs/cs/9709102)
 
-[8] C. G. Neville-Manning and I. H. Witten, "Compression and Explanation using Hierarchical Grammars," The Computer Journal, 1997. — Detailed exposition and evaluation of grammar induction for compression. [PDF](https://ml.cms.waikato.ac.nz/publications/1997/NM-IHW-Compress97.pdf)
+[8] C. G. Neville-Manning and I. H. Witten, "Compression and Explanation using Hierarchical Grammars," *The Computer Journal*, 1997. Detailed exposition of grammar induction for compression. [PDF](https://ml.cms.waikato.ac.nz/publications/1997/NM-IHW-Compress97.pdf)
 
-[9] N. J. Larsson and A. Moffat, "Offline Dictionary-Based Compression (Re-Pair)," Proc. IEEE, 2000. — Efficient offline grammar construction (Re-Pair); informs batch/async grammar building for storage backends. [Abstract](https://people.eng.unimelb.edu.au/ammoffat/abstracts/lm00procieee.html)
+[9] N. J. Larsson and A. Moffat, "Offline Dictionary-Based Compression (Re-Pair)," *Proc. IEEE*, 2000. Efficient offline grammar construction. [Abstract](https://people.eng.unimelb.edu.au/ammoffat/abstracts/lm00procieee.html)
 
-[10] M. Lohrey, "Algorithmics on SLP-Compressed Strings: A Survey," 2012. — Survey of algorithms over straight-line programs (SLPs); relevant for operating on compressed data without full decompression. [PDF](https://www.eti.uni-siegen.de/ti/veroeffentlichungen/12-survey.pdf)
+[10] M. Lohrey, "Algorithmics on SLP-Compressed Strings: A Survey," 2012. Survey of algorithms over straight-line programs. [PDF](https://www.eti.uni-siegen.de/ti/veroeffentlichungen/12-survey.pdf)
 
-[11] F. Claude and G. Navarro, "Self-Indexed Grammar-Based Compression," Fundamenta Informaticae, 2011. — Self-indexing over grammar-compressed data; informs seek/extract on grammatically stored objects. [DOI](https://doi.org/10.3233/FI-2011-565)
+[11] F. Claude and G. Navarro, "Self-Indexed Grammar-Based Compression," *Fundamenta Informaticae*, 2011. Self-indexing over grammar-compressed data. [DOI](https://doi.org/10.3233/FI-2011-565)
 
 ### Delta Encoding
 
-[12] A. Tridgell and P. Mackerras, "The rsync Algorithm," Tech. Report, 1996. — Classic delta-encoding with rolling checksums; informs external delta paths and similarity heuristics. [PDF](https://www.andrew.cmu.edu/course/15-749/READINGS/required/cas/tridgell96.pdf)
+[12] A. Tridgell and P. Mackerras, "The rsync Algorithm," Tech. Report, 1996. Classic delta-encoding with rolling checksums. [PDF](https://www.andrew.cmu.edu/course/15-749/READINGS/required/cas/tridgell96.pdf)
 
-### Indexes & Key–Value/Object Metadata
+### Indexes & Key-Value/Object Metadata
 
-[13] P. O'Neil et al., "The Log-Structured Merge-Tree (LSM-Tree)," Acta Informatica, 1996. — Baseline for log-structured indices (e.g., KV/object metadata) and write‑optimized ingestion. [PDF](https://dsf.berkeley.edu/cs286/papers/lsm-acta1996.pdf)
+[13] P. O'Neil et al., "The Log-Structured Merge-Tree (LSM-Tree)," *Acta Informatica*, 1996. Baseline for log-structured indices. [PDF](https://dsf.berkeley.edu/cs286/papers/lsm-acta1996.pdf)
 
-[14] R. Bayer and E. McCreight, "Organization and Maintenance of Large-Ordered Indices (B-Trees)," Acta Informatica, 1972. — Canonical reference for B/B+-trees; background for the non-strict B+-forest mapping in Eigentokens. [PDF](https://infolab.usc.edu/csci585/Spring2010/den_ar/indexing.pdf)
+[14] R. Bayer and E. McCreight, "Organization and Maintenance of Large-Ordered Indices (B-Trees)," *Acta Informatica*, 1972. Canonical reference for B/B+-trees. [PDF](https://infolab.usc.edu/csci585/Spring2010/den_ar/indexing.pdf)
 
-[15] L. Lu et al., "WiscKey: Separating Keys from Values in SSD-Conscious Storage," FAST 2016. — Key/value separation to reduce write amplification; relevant to value-log designs under compression/dedup. [PDF](https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf)
+[15] L. Lu et al., "WiscKey: Separating Keys from Values in SSD-Conscious Storage," *FAST 2016*. Key/value separation to reduce write amplification. [PDF](https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf)
 
-[16] H. Lim et al., "SILT: A Memory-Efficient, High-Performance Key‑Value Store," SOSP 2011. — Designs for flash-backed KV with tiny indexes; relevant for dedup indices and fingerprint stores. [PDF](https://www.cs.cmu.edu/~dga/papers/silt-sosp2011.pdf)
+[16] H. Lim et al., "SILT: A Memory-Efficient, High-Performance Key-Value Store," *SOSP 2011*. Flash-backed KV with tiny indexes. [PDF](https://www.cs.cmu.edu/~dga/papers/silt-sosp2011.pdf)
 
-[17] B. Chandramouli et al., "FASTER: A Concurrent Key‑Value Store with In-Place Updates," SIGMOD 2018. — Modern high-throughput KV with hybrid log; informs concurrency and hot-set handling on compressed backends. [PDF](https://www.microsoft.com/en-us/research/uploads/prod/2018/03/faster-sigmod18.pdf)
+[17] B. Chandramouli et al., "FASTER: A Concurrent Key-Value Store with In-Place Updates," *SIGMOD 2018*. Modern high-throughput KV with hybrid log. [PDF](https://www.microsoft.com/en-us/research/uploads/prod/2018/03/faster-sigmod18.pdf)
 
-### Distributed File/Object Storage (for system context)
+### Distributed File/Object Storage
 
-[18] S. Ghemawat, H. Gobioff, and S.-T. Leung, "The Google File System," SOSP 2003. — Chunked, replicated file system and client-driven range reads; background for "Google filesystem methodology." [Google Research](https://research.google/pubs/the-google-file-system/)
+[18] S. Ghemawat, H. Gobioff, and S.-T. Leung, "The Google File System," *SOSP 2003*. Chunked, replicated file system. [Google Research](https://research.google/pubs/the-google-file-system/)
 
-[19] S. A. Weil et al., "Ceph: A Scalable, High-Performance Distributed File System," OSDI 2006. — Object/file storage with CRUSH placement; informs object-centric sharding and metadata decoupling. [ACM](https://dl.acm.org/doi/10.5555/1267308.1267330)
+[19] S. A. Weil et al., "Ceph: A Scalable, High-Performance Distributed File System," *OSDI 2006*. Object/file storage with CRUSH placement. [ACM](https://dl.acm.org/doi/10.5555/1267308.1267330)
 
 ### Range-Friendly Access & Seekable Compression
 
-[20] R. Fielding et al., "RFC 7233: HTTP/1.1 Range Requests," IETF, 2014 (obsoleted in RFC 9110 semantics). — Protocol basis for partial object retrieval; relevant to range-friendly object access semantics. [IETF](https://datatracker.ietf.org/doc/html/rfc7233)
+[20] R. Fielding et al., "RFC 9110: HTTP Semantics," *IETF*, 2022. Current standard for HTTP including range requests. [IETF](https://datatracker.ietf.org/doc/html/rfc9110)
 
-[21] H. Li, "Tabix: fast retrieval of sequence features from generic TAB-delimited files," Bioinformatics, 2011. — Uses BGZF (blocked GZIP) indices for random access into compressed files; a mature pattern for seekable compression. [Oxford](https://academic.oup.com/bioinformatics/article/27/5/718/279592)
+[21] H. Li, "Tabix: fast retrieval of sequence features from generic TAB-delimited files," *Bioinformatics*, 2011. BGZF indices for random access. [Oxford](https://academic.oup.com/bioinformatics/article/27/5/718/279592)
 
-[22] H. Li et al., "The Sequence Alignment/Map format and SAMtools," Bioinformatics, 2009; and P. Danecek et al., GigaScience, 2021. — Practical example of block-compressed random access (BGZF) supporting range queries. [Link 1](https://academic.oup.com/bioinformatics/article/25/16/2078/204688) ; [Link 2](https://academic.oup.com/gigascience/article/10/2/giab008/6137722)
+[22] H. Li et al., "The Sequence Alignment/Map format and SAMtools," *Bioinformatics*, 2009. Practical BGZF implementation. [Link](https://academic.oup.com/bioinformatics/article/25/16/2078/204688)
 
-### LLM Tokenization (for contrast/terminology)
+### LLM Tokenization (for contrast)
 
-[23] R. Sennrich, B. Haddow, and A. Birch, "Neural Machine Translation of Rare Words with Subword Units," ACL 2016 (BPE). — Canonical BPE tokenizer for NMT; contrasts with storage-internal byte/fragment tokens. [ACL](https://aclanthology.org/P16-1162/)
+[23] R. Sennrich, B. Haddow, and A. Birch, "Neural Machine Translation of Rare Words with Subword Units," *ACL 2016*. BPE tokenizer for NMT. [ACL](https://aclanthology.org/P16-1162/)
 
-[24] Y. Wu et al., "Google's Neural Machine Translation System," arXiv 2016 (WordPiece). — WordPiece subword units as production tokenizer; background for 'tokenization' in LLM/NMT contexts. [arXiv](https://arxiv.org/abs/1609.08144)
+[24] Y. Wu et al., "Google's Neural Machine Translation System," *arXiv 2016*. WordPiece subword units. [arXiv](https://arxiv.org/abs/1609.08144)
 
-[25] T. Kudo and J. Richardson, "SentencePiece," EMNLP 2018 (System Demos). — Language-independent subword training (BPE/Unigram) from raw text; reference point distinct from Eigentokens. [ACL](https://aclanthology.org/D18-2012/)
+[25] T. Kudo and J. Richardson, "SentencePiece," *EMNLP 2018*. Language-independent subword training. [ACL](https://aclanthology.org/D18-2012/)
 
-[26] T. Kudo, "Subword Regularization," ACL 2018 (Unigram). — Unigram LM tokenization; additional contrast to storage-internal tokenization on bytes/blocks. [ACL](https://aclanthology.org/P18-1007/)
+[26] T. Kudo, "Subword Regularization," *ACL 2018*. Unigram LM tokenization. [ACL](https://aclanthology.org/P18-1007/)
 
 ### LLM Architecture References
 
-[27] Anthropic. "Claude 3.7 Sonnet and Claude Code — Announcement," Feb 24, 2025. https://www.anthropic.com/news/claude-3-7-sonnet
+[27] Anthropic. "Claude 3.7 Sonnet and Claude Code — Announcement," Feb 24, 2025.
 
-[28] Anthropic. "Claude 3.7 Sonnet — System Card (PDF)," 2025. https://www.anthropic.com/claude-3-7-sonnet-system-card
+[28] Anthropic. "Claude 3.7 Sonnet — System Card," 2025.
 
-[29] Anthropic. "Introducing Claude 4 — Opus 4 and Sonnet 4," May 22, 2025. https://www.anthropic.com/news/claude-4
+[29] Anthropic. "Introducing Claude 4 — Opus 4 and Sonnet 4," May 22, 2025.
 
-[30] Anthropic. "System Card: Claude Opus 4 & Claude Sonnet 4 (PDF)," May 2025. https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf
+[30] Anthropic. "System Card: Claude Opus 4 & Claude Sonnet 4," May 2025.
 
-[31] Anthropic. "Introducing Claude Sonnet 4.5," Sep 29, 2025. https://www.anthropic.com/news/claude-sonnet-4-5
+[31] Anthropic. "Introducing Claude Sonnet 4.5," Sep 29, 2025.
 
-[32] Anthropic. "Claude Sonnet 4.5 — System Card," Sep 2025. https://www.anthropic.com/claude-sonnet-4-5-system-card
+[32] Anthropic. "Claude Sonnet 4.5 — System Card," Sep 2025.
 
-[33] OpenAI. "Hello GPT‑4o (Omni)," May 13, 2024. https://openai.com/index/hello-gpt-4o/
+[33] OpenAI. "Hello GPT-4o (Omni)," May 13, 2024.
 
-[34] OpenAI. "Introducing GPT‑4.1 in the API," Apr 14, 2025. https://openai.com/index/gpt-4-1/
+[34] OpenAI. "Introducing GPT-4.1 in the API," Apr 14, 2025.
 
-[35] OpenAI. "Introducing GPT‑5," Aug 7, 2025. https://openai.com/index/introducing-gpt-5/
+[35] OpenAI. "Introducing GPT-5," Aug 7, 2025.
 
-[36] Gemini Team (Google). "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context," arXiv:2403.05530, 2024. https://arxiv.org/abs/2403.05530
+[36] Gemini Team (Google). "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context," *arXiv:2403.05530*, 2024.
 
 ### Additional References
 
-[37] Kuruppu, S., Puglisi, S. J., Zobel, J. "Relative Lempel‑Ziv Compression of Genomes for Large‑Scale Storage and Retrieval," SPIRE 2010. https://doi.org/10.1007/978-3-642-16321-0_20
+[37] Kuruppu, S., Puglisi, S. J., Zobel, J. "Relative Lempel-Ziv Compression of Genomes for Large-Scale Storage and Retrieval," *SPIRE 2010*.
 
-[38] Kuruppu, S., Puglisi, S. J., Zobel, J. "Optimized Relative Lempel‑Ziv Compression of Genomes," CRPIT 2011. https://crpit.scem.westernsydney.edu.au/abstracts/CRPITV113Kuruppu.html
+[38] Kuruppu, S., Puglisi, S. J., Zobel, J. "Optimized Relative Lempel-Ziv Compression of Genomes," *CRPIT 2011*.
 
-[39] U. Aßmann. "Invasive Software Composition." Springer, 2003.
+[39] U. Aßmann. "Invasive Software Composition." Springer, 2003.
+
+### Compositional Learning and Neural-Symbolic Integration
+
+[40] B. Lake and M. Baroni, "Generalization without Systematicity: On the Compositional Skills of Sequence-to-Sequence Recurrent Networks," *ICML 2018*. Demonstrates limitations of neural networks in compositional generalization. [arXiv](https://arxiv.org/abs/1711.00350)
+
+[41] J. Andreas, M. Rohrbach, T. Darrell, and D. Klein, "Neural Module Networks," *CVPR 2016*. Modular neural architectures for compositional reasoning. [arXiv](https://arxiv.org/abs/1511.02799)
+
+[42] A. Santoro, A. Lampinen, K. Mathewson, T. Lillicrap, and D. Raposo, "Symbolic Behaviour in Artificial Intelligence," *arXiv 2021*. Survey of hybrid neuro-symbolic approaches. [arXiv](https://arxiv.org/abs/2102.03406)
+
+[43] K. Ellis, C. Wong, M. Nye, M. Sablé-Meyer, L. Morales, L. Hewitt, L. Cary, A. Solar-Lezama, and J. B. Tenenbaum, "DreamCoder: Bootstrapping Inductive Program Synthesis with Wake-Sleep Library Learning," *PLDI 2021*. Program synthesis through library learning. [PDF](https://dl.acm.org/doi/10.1145/3453483.3454080)
