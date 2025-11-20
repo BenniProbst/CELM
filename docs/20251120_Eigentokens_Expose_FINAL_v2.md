@@ -20,6 +20,7 @@ Tel.: +49 162 327 8627
 
 - **ELM** – Eigentoken Language Model(er)
 - **CELM** – Component-based Eigentoken Language Model(er)
+- **CELM-lang** – Meta-language operating at M2 metamodel level that describes interpretation programs and match conditions
 - **Omni-LLM** – Universal language model vision using grammar modules instead of neural activations
 - **Interpretation** – A parameterized program to process input streams or data and produce output streams or results
 - **Knowledge** – Systematically analyzed information establishing correspondence patterns across multiple objects
@@ -165,17 +166,52 @@ The primary B+-tree uses SHA512 hashes as keys for Eigentoken objects, treating 
 
 Larger files exceeding 4GB are automatically decomposed into multiple sub-Eigentokens with appropriate reference structures.
 
-### 2.4 Eigentoken Program Libraries
+### 2.4 CELM-lang: The Meta-Language for Interpretation Programs
 
-The interpretation programs utilize a complete virtual instruction set architecture with the following categories:
+CELM-lang represents a new category of data meta-language that describes the interpretation programs within Eigentokens. Unlike traditional languages that describe data relationships directly in the M1 metamodel, CELM-lang operates at the M2 metamodel level, defining interpretation rules and match conditions for pattern recognition.
+
+The interpretation program P within each Eigentoken can be understood as assembly-like data code, described through the external CELM-lang specification. This creates a clear separation between data representation (M1) and interpretation rules (M2), enabling dynamic evolution of the system's analytical capabilities.
+
+**Language Architecture**:
+Following the Intel oneAPI framework model, CELM-lang components are:
+- Dynamically loaded at runtime or statically precompiled at startup
+- Cached in memory for efficient execution  
+- Made available to the CELM agent for database rewriting operations
+- Versionable and replaceable without data migration
+
+**Interpretation Building Blocks**:
+CELM-lang defines the following interpretation primitives:
 - **Function Generators**: Mathematical and logical transformations
 - **Pattern Generators**: Repetition, overlay, and structural patterns
 - **Reference Compositors**: Multi-token assembly operations
 - **Eigentoken Program Compositors**: Higher-order program combination
 - **Logical Operators**: Boolean and conditional operations
 - **Control Flow Operators**: Iteration, branching, and recursion
+- **Match Conditions**: Rules defining when patterns qualify as matches under specific circumstances
 
-This architecture implements a data-assembler structure that combines existing language relationships into output Eigentokens through arithmetic, logic, control structures, and dynamically extensible grammar primitives. Programs can invoke sub-programs similar to Linux pipelines, enabling multi-step reconstruction of original data.
+This architecture implements a data-assembler structure that combines existing language relationships into output Eigentokens through arithmetic, logic, control structures, and dynamically extensible grammar primitives.
+
+### 2.5 CELM-lang as Universal Analysis Tool
+
+CELM-lang serves multiple roles simultaneously:
+- **Analysis Description**: Defines how to analyze language structures and their relationships
+- **Query Foundation**: Enables queries for entropy, redundancy, word-to-sentence connections, and sentence statistics
+- **Statistical Framework**: Provides occurrence statistics for various patterns and their distributions
+- **Compilation Tool**: Serves as the compiler infrastructure for LLM construction
+- **Debugging Interface**: Allows inspection and modification of language rules
+- **Evolution Platform**: Enables self-modification through new CELM-lang program sets
+
+This transforms CELM into a comprehensive tool-compiler for language analysis, debugging, statistics, and LLM compilation. The dual role of CELM-lang as both analysis description and query foundation establishes it as the central nervous system of the Eigentoken architecture.
+
+### 2.6 Agentic Self-Evolution Through CELM-lang
+
+When an agentic LLM model built through CELM receives queries about self-evolution, it can:
+1. Generate new CELM-lang program sets defining improved interpretation rules
+2. Compile these into a new LLM version with enhanced capabilities
+3. Replace the parent process with its child process (similar to Unix exec())
+4. Continue operation with evolved capabilities
+
+This process enables CELM to achieve genuine logical thinking and agentic behavior. Due to the integer-based knowledge storage (avoiding floating-point errors), the system can make more robust and traceable decisions than probabilistic models. This extends the M3 self-adaptation vision: the system not only adapts its grammar but can fundamentally rewrite its own interpretation machinery, achieving true autonomous evolution while maintaining deterministic reproducibility.
 
 ### 2.5 Dynamic CDC and Tokenization Strategies
 
@@ -439,9 +475,11 @@ Eigentokens represent a paradigm shift from probabilistic to deterministic langu
 The system employs a meta-learning hierarchy:
 - **M1 Metamodel**: Learns patterns in grammar emergence from raw data
 - **M2 Metamodel**: Maps grammatical structures to neural architectures
-- **M3 Self-Adaptation**: Enables runtime grammar extension without retraining, supporting autonomous evolution of the knowledge base through invasive software composition principles [39]
+- **M3 Self-Adaptation**: Enables runtime grammar extension and self-evolution, supporting autonomous evolution of the knowledge base through invasive software composition principles [39]
 
-This three-level architecture enables the vision of an **omni-LLM** - a universal model capable of generating outputs (text, code, etc.) using grammar modules instead of neural activations. Such a system would generate new sentences or data by executing production rules from the grammar cookbook rather than sampling from neural probability distributions, achieving complete determinism and traceability. However, outcome data quality depends on input data quality - errors in the base data propagate deterministically through the system, though unlike probabilistic models, these errors remain traceable and correctable through grammar debugging.
+This three-level architecture enables the vision of an **omni-LLM** - a universal model capable of generating outputs (text, code, etc.) using grammar modules instead of neural activations. Such a system would generate new sentences or data by executing production rules from the grammar cookbook rather than sampling from neural probability distributions, achieving complete determinism and traceability. 
+
+The M3 level extends beyond simple adaptation: when the system receives self-evolution queries, it can generate new CELM-lang program sets, compile improved versions of itself, and replace its parent process with enhanced child processes. This achieves genuine logical thinking and agentic behavior. Due to integer-based knowledge storage (avoiding floating-point errors), the system makes more robust and traceable decisions than probabilistic models. However, outcome data quality depends on input data quality - errors in the base data propagate deterministically through the system, though unlike probabilistic models, these errors remain traceable and correctable through grammar debugging.
 
 This hierarchy proves that autonomous programming with M1 stability—changing descriptions while maintaining data consistency—is achievable for language models. The system demonstrates unlimited real-time extensibility while users interact with and query the model.
 
@@ -536,25 +574,27 @@ All data persists immediately; recovery depends on checkpoint timing.
 
 **C4 - Programming Language Evolution for AI**: Demonstrates the transition from assembly-like primitives to high-level abstractions in AI, paralleling the historical evolution of programming languages. The system proves modular LLM construction is possible, similar to how Java and Python enable dynamic interpretation with static libraries.
 
+**C5 - CELM-lang Meta-Language**: Introduction of a new category of data meta-language operating at the M2 metamodel level, defining interpretation rules and match conditions rather than data relationships. Following the Intel oneAPI model, CELM-lang enables dynamic loading and evolution of interpretation machinery, serving simultaneously as analysis description, query foundation, statistical framework, and evolution platform.
+
 ### 11.2 Systems Contributions
 
-**C5 - Grammar-Aware B+-Forest Architecture**: Novel non-strict B+-forest maintaining topic-filtered grammatical views with O(log n) access complexity while supporting recursive references and cross-tree dependencies. SHA512 hashing provides content-addressable storage with 4GB token limits.
+**C6 - Grammar-Aware B+-Forest Architecture**: Novel non-strict B+-forest maintaining topic-filtered grammatical views with O(log n) access complexity while supporting recursive references and cross-tree dependencies. SHA512 hashing provides content-addressable storage with 4GB token limits.
 
-**C6 - Token-Aligned Seekable Compression**: Integration of grammatical boundaries with seekable compression formats, achieving < 5% random access overhead while maintaining 25-40% better compression than CDC.
+**C7 - Token-Aligned Seekable Compression**: Integration of grammatical boundaries with seekable compression formats, achieving < 5% random access overhead while maintaining 25-40% better compression than CDC.
 
-**C7 - Asynchronous Grammar Pipeline**: Three-stage processing architecture decoupling ingestion from grammar learning, achieving < 10ms write latencies while performing O(n³) pattern analysis in background.
+**C8 - Asynchronous Grammar Pipeline**: Three-stage processing architecture decoupling ingestion from grammar learning, achieving < 10ms write latencies while performing O(n³) pattern analysis in background.
 
-**C8 - Agentic AI Storage System**: First storage system functioning as autonomous AI that self-programs and learns from its corpus without external intervention.
+**C9 - Agentic AI Storage System**: First storage system functioning as autonomous AI that self-programs and learns from its corpus without external intervention.
 
-**C9 - Grammar Cookbook Metaphor**: Introduction of the cookbook paradigm for managing grammatical productions as interpretable recipes for data reconstruction.
+**C10 - Grammar Cookbook Metaphor**: Introduction of the cookbook paradigm for managing grammatical productions as interpretable recipes for data reconstruction.
 
 ### 11.3 Empirical Contributions
 
-**C10 - Comparative Evaluation Framework**: Comprehensive benchmarking suite comparing grammar-based approach against CDC, BGZF, and LSM baselines across deduplication ratio, compression efficiency, write amplification, and range-read latency metrics.
+**C11 - Comparative Evaluation Framework**: Comprehensive benchmarking suite comparing grammar-based approach against CDC, BGZF, and LSM baselines across deduplication ratio, compression efficiency, write amplification, and range-read latency metrics.
 
-**C11 - Open Reproducible Implementation**: C++20 reference implementation with reproducible evaluation harness, datasets, and ablation studies isolating individual architectural components' contributions.
+**C12 - Open Reproducible Implementation**: C++20 reference implementation with reproducible evaluation harness, datasets, and ablation studies isolating individual architectural components' contributions.
 
-**C12 - Production-Scale Validation**: Demonstrated viability through previous deployments: 380,000 lines of code (UltiHash self-hosting) and 1 PB video data (Bosch XC Abstatt).
+**C13 - Production-Scale Validation**: Demonstrated viability through previous deployments: 380,000 lines of code (UltiHash self-hosting) and 1 PB video data (Bosch XC Abstatt).
 
 ---
 
