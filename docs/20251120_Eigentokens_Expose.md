@@ -168,9 +168,9 @@ Larger files exceeding 4GB are automatically decomposed into multiple sub-Eigent
 
 ### 2.4 CELM-lang: The Meta-Language for Interpretation Programs
 
-CELM-lang represents a new category of data meta-language that describes the interpretation programs within Eigentokens. Unlike traditional languages that describe data relationships directly in the M1 metamodel, CELM-lang operates at the M2 metamodel level, defining interpretation rules and match conditions for pattern recognition.
+CELM-lang represents a new category of data meta-language that describes the interpretation programs within Eigentokens. Unlike traditional languages that describe data relationships directly in the M1 metamodel, CELM-lang operates at the M2 metamodel level, defining interpretation rules and match conditions for pattern recognition. Finally the analysis of Data in M1 that area refinements of patterns in M2, allow the self perpetuating description of new knowledge, equivalent to an agentic M3 self-description later.
 
-The interpretation program P within each Eigentoken can be understood as assembly-like data code, described through the external CELM-lang specification. This creates a clear separation between data representation (M1) and interpretation rules (M2), enabling dynamic evolution of the system's analytical capabilities.
+The interpretation program P within each Eigentoken can be understood as assembly-like data code, described through the external CELM-lang specification, that is offered to the CELM analysis agent as an analysis tool. This creates a clear separation between data representation (M1) and interpretation rules (M2), enabling dynamic evolution of the system's analytical capabilities. At the same time the analysis of M1 Data gains insight into the M3 self-description knowledge of a chosen dataset and language by constructing an agentic grammar model of that language.
 
 **Language Architecture**:
 Following the Intel oneAPI framework model, CELM-lang components are:
