@@ -371,7 +371,7 @@ Eigentoken τ₃ = {
 
 When new documents arrive containing "Apfelsaft" (apple juice) or "Baumhaus" (treehouse), the system reuses existing tokens:
 - "Apfelsaft" = τ₁ + new token "saft"
-- "Baumhaus" = τ₂ + new token "haus"
+- "Baumhaus" = TOCAPITAL(τ₂) + new token "haus"
 
 This demonstrates how grammar-aware chunking preserves semantic boundaries while maximizing reuse across objects.
 
@@ -384,7 +384,7 @@ When "Apfel" changes to "Äpfel" (plural), the system evaluates:
 
 The decision process considers all tokens using this sub-word to optimize the global storage footprint.
 
-Hint: To enable good reduction rates by using indirecting, CELM uses a dynamic length SHA and prefix description. IDs are therefore unique but are kept as short as possible, mostly using the word prefix itself as an idea for identity.
+Hint: To enable good reduction rates by using indirection, CELM uses a dynamic length SHA and prefix description to reference words and sentences. IDs are therefore unique but are kept as short as possible, mostly using the word prefix itself as an idea for identity.
 
 ---
 
