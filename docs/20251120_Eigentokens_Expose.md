@@ -438,7 +438,7 @@ No existing system combines:
 4. **Unified deduplication and AI infrastructure** in a single system
 5. **Compositional learning principles** applied to storage and compilation
 6. **Agentic AI capabilities** for autonomous knowledge extension
-7. **Grammar cookbook** metaphor for interpretable rule management
+7. **Grammar cookbook** metaphor for interpretable rule management, referencing Chomsky Grammar construction
 
 This work fills this gap by treating storage and AI model construction as two facets of the same grammatical analysis problem.
 
