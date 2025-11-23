@@ -232,7 +232,7 @@ This work focuses on storage-level grammar induction and deterministic model com
 - **Probabilistic inference**: No gradient-based training or sampling
 - **Generative capabilities**: Initial focus on compilation, not generation
 
-The system operates at the byte level, treating all data—text, images, structured formats—as sequences amenable to grammatical analysis. Binary-level analysis enables format-agnostic processing of any file type. Evaluation metrics prioritize storage efficiency and compilation determinism over traditional NLP benchmarks.
+The system operates at the byte level, treating all data—text, images, structured formats—as sequences amenable to grammatical analysis. The size of one byte is a definition and interpretation for itself, where a byte may only carry one bit and allow cross-byte interpretation. Binary-level analysis enables format-agnostic processing of any file type. Evaluation metrics prioritize storage efficiency and compilation determinism over traditional NLP benchmarks.
 
 ---
 
