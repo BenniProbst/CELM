@@ -384,6 +384,8 @@ When "Apfel" changes to "Äpfel" (plural), the system evaluates:
 
 The decision process considers all tokens using this sub-word to optimize the global storage footprint.
 
+Hint: To enable good reduction rates by using indirecting, CELM uses a dynamic length SHA and prefix description. IDs are therefore unique but are kept as short as possible, mostly using the word prefix itself as an idea for identity.
+
 ---
 
 ## 7. Related Work
