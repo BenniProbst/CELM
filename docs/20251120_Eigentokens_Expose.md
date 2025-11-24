@@ -545,7 +545,7 @@ All data persists immediately; recovery depends on checkpoint timing.
 
 **A6 - Eigentoken Mock Rules**: Development of pattern rules for Eigentoken processing to demonstrate storage and grammar linking behavior. Includes test cases for various data types and edit patterns.
 
-**A7 - (Roadmap) Replication/Erasure**: Future extension for applying placement and erasure-coding policies on grammar leaves for resilience and space efficiency (beyond initial project scope).
+**A7 - (Roadmap) Replication/Erasure**: Future extension for applying placement and erasure-coding policies on grammar leaves and Eigentokens in general for resilience and space efficiency (beyond initial project scope). Ensure coding will be multi level per machine, per cluster and per cluster group that the user chooses to work on.
 
 ### 10.2 Implementation Details
 
