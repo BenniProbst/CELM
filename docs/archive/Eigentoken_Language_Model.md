@@ -12,8 +12,8 @@ architecture, and research notes are maintained under the CELM documentation.
 
 ## Sensitive Assets
 
-Non-disclosure audio recordings are stored locally in:
+Non-disclosure audio recordings are archived in:
 
-`Sprachaufnahmen/` (gitignored)
+`Projekte/docs/archive/research/eigentoken_language_model/Sprachaufnahmen/`
 
-Do not commit audio files. Use this local folder for any archived recordings.
+These files are sensitive; do not redistribute.
