@@ -40,3 +40,7 @@ third_party/*
 !third_party/DependencyDeduplication.cmake
 !third_party/CMakeLists.txt
 !third_party/.gitkeep
+
+# Non-disclosure audio recordings (local only)
+/Sprachaufnahmen/*
+!/Sprachaufnahmen/.gitkeep
