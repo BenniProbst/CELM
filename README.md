@@ -6,6 +6,12 @@
 
 CELM provides a robust framework for eigentoken management with modern C++ features.
 
+## Prototype Note (ELM)
+
+- ELM (Eigentoken Language Model) is the older prototype and is archived.
+- The archived description lives in `docs/archive/Eigentoken_Language_Model.md`.
+- CELM is the active and maintained implementation.
+
 ## Features
 
 - Modern C++23 implementation

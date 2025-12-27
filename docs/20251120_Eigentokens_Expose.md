@@ -45,9 +45,12 @@ Tel.: +49 162 327 8627
 - **Asynchronous inline pipeline** – Ingestion architecture writing stable references immediately while deferring grammar consolidation to background tasks
 - **HTTP Range semantics (RFC 9110)** – Current standard for partial content requests across HTTP versions; supersedes RFC 7233
 - **zstd-seekable** – Zstandard compression variant with frame pointers enabling random access via skippable frames and seek tables
-- **Agentic AI** – Autonomous AI system capable of self-directed learning and adaptation without external intervention
+- **Agentic AI** - Autonomous AI system capable of self-directed learning and adaptation without external intervention
 
 ---
+
+**Note**: ELM is an archived prototype; CELM is the active implementation. See
+`docs/archive/Eigentoken_Language_Model.md` for the archived ELM description.
 
 ## Abstract
 
