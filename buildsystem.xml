@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CELM - CELM research module
+  buildsystem.xml (mock)
+
+  Schema: https://bep-venture.de/schemas/buildsystem v3.4.14
+  Status: MOCK (contract-aligned; implementation pending)
+-->
+<buildSystem version="3.4.14" xmlns="https://bep-venture.de/schemas/buildsystem">
+
+  <project>
+    <name>CELM</name>
+    <version>0.1.0</version>
+    <description>CELM research module</description>
+    <type>module</type>
+    <license>EULA</license>
+    <maintainer>BEP Venture UG</maintainer>
+    <repository>https://github.com/BenniProbst/CELM</repository>
+  </project>
+
+  <requiredModules>
+    <module name="BuildSystem" version="3.4.14" updatePolicy="stable">
+      <repo>BenniProbst/BuildSystem</repo>
+      <branch>development</branch>
+      <source>git</source>
+    </module>
+  </requiredModules>
+  <build>
+    <system>cmake</system>
+    <!-- TODO: define targets, linkage, install paths as needed -->
+  </build>
+
+  <phases>
+    <phase0 enabled="true" />
+    <phase1 enabled="true" compilers="GCC,Clang" />
+    <phase2 enabled="true" />
+    <phase3 enabled="true" compilers="GCC,Clang,MSVC" />
+    <phase4 enabled="false" />
+    <phase5 enabled="false" />
+  </phases>
+
+  <exports>
+    <environment>
+      <var name="CELM_ROOT" path="." />
+    </environment>
+  </exports>
+
+</buildSystem>
+
